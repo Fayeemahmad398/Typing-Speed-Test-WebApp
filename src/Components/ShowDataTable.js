@@ -6,13 +6,13 @@ import {
   TableRow,
   Table,
 } from "@mui/material";
-import { UseThemes } from "./GlobalContextFolder/MyThemeContext";
+import { UseThemes } from "../GlobalContextFolder/MyThemeContext";
 
 const ShowDataTable = ({ data, graphData }) => {
   const { theme } = UseThemes();
   const style = {
     color: theme.color,
-    fontSize: "1.5rem",
+    fontSize: "1rem",
     textAlign: "center",
     border: `1px solid ${theme.color}`,
   };

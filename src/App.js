@@ -1,7 +1,7 @@
 import { GlobalStyles } from "./styles/globalStyle";
 
 import { ThemeProvider } from "styled-components";
-import { UseThemes } from "./Components/GlobalContextFolder/MyThemeContext";
+import { UseThemes } from "./GlobalContextFolder/MyThemeContext";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Routes, Route } from "react-router";

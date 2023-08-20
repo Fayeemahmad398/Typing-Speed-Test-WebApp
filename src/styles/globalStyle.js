@@ -21,7 +21,6 @@ body{
 }
 .canvas {
   border: 2px dotted blue;
-  min-height:100vh;
   display: flex;
   flex-direction:column;
   width:90vw;
@@ -262,13 +261,9 @@ body{
   .graph{
     border:2px  solid yellow;
     width:100%;
-    height:253px;
     display:flex;
     flex-direction:row;
     justify-content:center;
-  }
-  .line-component{
-    border:1px solid white;
   }
   .current-graph{
     width:9%;
@@ -370,7 +365,10 @@ h1,h2{
   text-align:center;
   margin:2px;
 }
-
+.graph-width{
+  width:100%!important;
+max-height:600px!important;
+}
 
 // Media Queries i  applied below than  it 
 
@@ -439,12 +437,11 @@ h1,h2{
 }
 .graph{
   width:100%!important;
-  height:fit-content;
 }
-.line-component
-{
-  // height:2000px!important;
+.total-tests{
+  font-size:2rem;
 }
+
  }
 
  

@@ -1,6 +1,6 @@
 import { TextField, Box, Button } from "@mui/material";
 import { useState } from "react";
-import { UseThemes } from "./GlobalContextFolder/MyThemeContext";
+import { UseThemes } from "../GlobalContextFolder/MyThemeContext";
 import { auth } from "../firebaseConfig";
 import { toast } from "react-toastify";
 import firebaseAuthErrorMessages from "../Utils/errorMapping";

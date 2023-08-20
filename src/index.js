@@ -1,8 +1,8 @@
 import { React } from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
-import { MyContextProvider } from "./Components/GlobalContextFolder/myContext";
-import { MyThemeContextProvider } from "./Components/GlobalContextFolder/MyThemeContext";
+import { MyContextProvider } from "./GlobalContextFolder/myContext";
+import { MyThemeContextProvider } from "./GlobalContextFolder/MyThemeContext";
 import { BrowserRouter } from "react-router-dom";
 
 ReactDOM.render(

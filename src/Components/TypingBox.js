@@ -1,7 +1,7 @@
 import { generate } from "random-words";
 import { createRef, useEffect, useMemo, useRef, useState } from "react";
 import UpperMenu from "./UpperMenu";
-import { useGlobalContext } from "./GlobalContextFolder/myContext";
+import { useGlobalContext } from "../GlobalContextFolder/myContext";
 import Status from "./Status";
 const TypingBox = () => {
   const { testTime } = useGlobalContext();

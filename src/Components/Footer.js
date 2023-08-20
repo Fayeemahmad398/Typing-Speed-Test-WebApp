@@ -1,6 +1,6 @@
 import { themeOptions } from "../Utils/themeOptions";
 import Select from "react-select";
-import { UseThemes } from "./GlobalContextFolder/MyThemeContext";
+import { UseThemes } from "../GlobalContextFolder/MyThemeContext";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import { NavLink } from "react-router-dom";
@@ -43,6 +43,7 @@ const Footer = () => {
                 width: "120px",
               };
             },
+
             menu: (baseStyle) => {
               return {
                 ...baseStyle,
@@ -50,6 +51,7 @@ const Footer = () => {
                 border: `1px solid ${theme.color}`,
               };
             },
+
             option: (baseStyle, state) => {
               return {
                 ...baseStyle,

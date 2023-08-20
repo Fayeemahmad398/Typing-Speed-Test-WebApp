@@ -1,4 +1,4 @@
-import { useGlobalContext } from "./GlobalContextFolder/myContext";
+import { useGlobalContext } from "../GlobalContextFolder/myContext";
 
 const UpperMenu = (props) => {
   const { setTestTime } = useGlobalContext();

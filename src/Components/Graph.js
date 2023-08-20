@@ -9,7 +9,7 @@ import {
   Legend,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
-import { UseThemes } from "./GlobalContextFolder/MyThemeContext";
+import { UseThemes } from "../GlobalContextFolder/MyThemeContext";
 
 ChartJS.register(
   CategoryScale,
@@ -51,7 +51,7 @@ const Graph = ({ graphData }) => {
               x: {
                 ticks: {
                   font: {
-                    size: 17,
+                    // size: ,
                   },
                   color: `${theme.color}`,
                 },
@@ -63,7 +63,7 @@ const Graph = ({ graphData }) => {
                       : "Time(sec) >",
                   color: `${theme.color}`,
                   font: {
-                    size: 17,
+                    // size: 17,
                   },
                 },
                 grid: {
@@ -76,12 +76,12 @@ const Graph = ({ graphData }) => {
                   text: "WPM >",
                   color: `${theme.color}`,
                   font: {
-                    size: 17,
+                    // size: 17,
                   },
                 },
                 ticks: {
                   font: {
-                    size: 17,
+                    // size: 17,
                   },
                   color: `${theme.color}`,
                 },
@@ -90,6 +90,8 @@ const Graph = ({ graphData }) => {
                 },
               },
             },
+            // responsive: true,
+            // maintainAspectRatio: false,
           }}
         />
       )}

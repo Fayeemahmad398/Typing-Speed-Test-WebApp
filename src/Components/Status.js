@@ -125,7 +125,7 @@ const Status = ({
           </div>
         </div>
       </div>
-      <div className="graph">
+      <div>
         <Graph graphData={UpdatedGraphData} />
       </div>
     </div>

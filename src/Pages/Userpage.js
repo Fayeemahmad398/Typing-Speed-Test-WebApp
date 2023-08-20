@@ -7,7 +7,7 @@ import { useNavigate } from "react-router";
 import ShowDataTable from "../Components/ShowDataTable";
 import Graph from "../Components/Graph";
 import UserInfo from "../Components/UserInfo";
-import { UseThemes } from "../Components/GlobalContextFolder/MyThemeContext";
+import { UseThemes } from "../GlobalContextFolder/MyThemeContext";
 
 const Userpage = () => {
   const [data, setData] = useState([]);
@@ -62,7 +62,7 @@ const Userpage = () => {
     
     <div className="canvas">
       <UserInfo data={data} />
-      <div>
+      <div className="graph-width">
         <h1>Typing Speed Analysis</h1>
         <h2>WPM vs Date</h2>
         <Graph graphData={graphData} />

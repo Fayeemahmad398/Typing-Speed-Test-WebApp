@@ -4,7 +4,7 @@ import Login from "./Login";
 import { GoogleButton } from "react-google-button";
 import Signup from "./Signup";
 import { useState } from "react";
-import { UseThemes } from "./GlobalContextFolder/MyThemeContext";
+import { UseThemes } from "../GlobalContextFolder/MyThemeContext";
 import { Box } from "@mui/system";
 import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import firebaseAuthErrorMessages from "../Utils/errorMapping";
