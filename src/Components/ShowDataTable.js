@@ -20,6 +20,7 @@ const ShowDataTable = ({ data, graphData }) => {
   console.log(data);
   return (
     <div className="table">
+      <h2 className="details-progress">Details of Progress</h2>
       <TableContainer>
         <Table>
           <TableHead>

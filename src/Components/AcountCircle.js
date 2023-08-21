@@ -91,6 +91,7 @@ const AccountCircle = () => {
         HandleClose();
       })
       .catch((error) => {
+        console.log(error.message);
         toast.error(
           firebaseAuthErrorMessages[error.code] ||
             "Not able use google login service",

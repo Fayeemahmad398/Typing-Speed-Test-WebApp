@@ -369,8 +369,46 @@ h1,h2{
   width:100%!important;
 max-height:600px!important;
 }
+.details-progress{
+  margin-top:20px;
+  border:2px solid red;
+}
+
+.activeTest{
+  background:${(props) => {
+    return props.theme.background;
+  }};
+  color:${(props) => {
+    return props.theme.color;
+  }}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // Media Queries i  applied below than  it 
+
+
 
 @media (max-width:500px) {
   .logo-typing{
@@ -441,6 +479,10 @@ max-height:600px!important;
 .total-tests{
   font-size:2rem;
 }
+.line-component{
+  height:100px!important;
+}
+
 
  }
 

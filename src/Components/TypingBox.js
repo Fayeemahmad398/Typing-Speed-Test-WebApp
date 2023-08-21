@@ -32,30 +32,35 @@ const TypingBox = () => {
   function wordsSpanArraysRefsClearAClass() {
     wordsSpanArraysRefs.map((wordRef) => {
       let children = wordRef?.current?.children;
-      if (children) {
+
+      if (children)
         Array.from(children).map((charEle) => {
           charEle.className = "";
         });
-      }
     });
-  }
-
-  function resetAll() {
-    clearInterval(intervalID);
-    setCountDown(testTime);
-    setTestStarted(false);
-    setTestEnded(false);
-    setWordIndex(0);
-    setCharIndex(0);
-    wordsSpanArraysRefsClearAClass();
-    setRandomWordArr(() => {
-      return generate(60);
-    });
-    focustInputElement();
-
+    console.log(wordsSpanArraysRefs);
     if (wordsSpanArraysRefs && wordsSpanArraysRefs[0].current) {
       wordsSpanArraysRefs[0].current.children[0].className = "blinkerChar";
     }
+  }
+
+  function resetAll() {
+    setRandomWordArr(() => {
+      return generate(60);
+    });
+    setCountDown(testTime);
+    setWordIndex(0);
+    setCharIndex(0);
+    setTestStarted(false);
+    setTestEnded(false);
+    focustInputElement();
+    clearInterval(intervalID);
+    wordsSpanArraysRefsClearAClass();
+    setCorrectChars(0);
+    setIncorrectChars(0);
+    setMissedChars(0);
+    setExtraChars(0);
+    setGraphData([]);
   }
 
   const startTimer = () => {
@@ -100,8 +105,7 @@ const TypingBox = () => {
 
   useEffect(() => {
     inputRef.current.focus();
-    wordsSpanArraysRefs[wordIndex].current.children[charIndex].className =
-      "blinkerChar";
+    wordsSpanArraysRefs[0].current.children[0].className = "blinkerChar";
   }, []);
 
   function handleUser(event) {
@@ -194,15 +198,12 @@ const TypingBox = () => {
     return Math.round((correctWords / wordIndex) * 100);
   }
   function focustInputElement() {
-    setTimeout(() => {
     inputRef?.current?.focus();
-  
-    }, 1000);
   }
 
   return (
     <div className="outer-typing-box">
-      <UpperMenu countDown={countDown} />
+      <UpperMenu countDown={countDown} resetAll={resetAll} />
       {!testEnd && randomWordArr.length > 0 ? (
         <div className="type-box" onClick={focustInputElement}>
           <div className="words">
