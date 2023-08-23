@@ -82,7 +82,6 @@ const TypingBox = () => {
     setIntervalID(intervalId);
     function Timer() {
       setCountDown((previousValue) => {
-        
         setCorrectChars((correctChars) => {
           setGraphData((graphData) => {
             return [
