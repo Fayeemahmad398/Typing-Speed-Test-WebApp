@@ -15,7 +15,7 @@ const Status = ({
   const SaveDataToDB = () => {
     if (isNaN(accuracy)) {
       toast.warn(
-        "🦄 invalid test,You should type atleast a word to see result!",
+        " invalid test,You should type atleast a word to see result!",
         {
           position: "top-right",
           autoClose: 4000,
@@ -48,7 +48,7 @@ const Status = ({
         UserId: uid,
       })
       .then((res) => {
-        toast.success("🦄 Successfully saved user Details!", {
+        toast.success("Successfully saved user Details!", {
           position: "top-right",
           autoClose: 4000,
           hideProgressBar: false,
@@ -78,6 +78,7 @@ const Status = ({
         });
       });
   };
+
   useEffect(() => {
     if (auth.currentUser) {
       SaveDataToDB();
@@ -115,7 +116,7 @@ const Status = ({
         </div>
 
         <div>
-          <span>Accuracy:</span> <strong>{accuracy}</strong>
+          <span>Accuracy:</span> <strong>{accuracy}%</strong>
         </div>
         <div>
           <div>

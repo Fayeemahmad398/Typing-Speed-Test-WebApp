@@ -8,6 +8,8 @@ import ShowDataTable from "../Components/ShowDataTable";
 import Graph from "../Components/Graph";
 import UserInfo from "../Components/UserInfo";
 import { UseThemes } from "../GlobalContextFolder/MyThemeContext";
+import { toast } from "react-toastify";
+import firebaseAuthErrorMessages from "../Utils/errorMapping";
 
 const Userpage = () => {
   const [data, setData] = useState([]);
@@ -19,6 +21,8 @@ const Userpage = () => {
   let graphData1 = [];
   const fetchData = () => {
     const { uid } = auth.currentUser;
+
+    console.log(auth);
     const tempData = [];
     const resultRef = database.collection("result");
     console.log(resultRef, uid);
@@ -27,7 +31,6 @@ const Userpage = () => {
       .orderBy("timeStamp", "desc")
       .get()
       .then((snapshot) => {
-        console.log(snapshot);
         snapshot.forEach((doc) => {
           tempData.push({ ...doc.data() });
           graphData1.push([
@@ -35,8 +38,31 @@ const Userpage = () => {
             doc.data().WPM,
           ]);
         });
+
         setData(tempData);
         setGraphData(graphData1);
+      })
+      .catch((error) => {
+        console.log(error);
+        toast.error(
+          firebaseAuthErrorMessages[error?.code] ||
+            "Your connection was interrupted",
+          {
+            position: "top-right",
+            autoClose: 4000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            style: {
+              color: theme.background,
+              background: theme.color,
+              border: `5px solid ${theme.background}`,
+            },
+          }
+        );
       });
   };
   console.log(graphData);
@@ -48,6 +74,7 @@ const Userpage = () => {
       navigator("/");
     }
   }, [loading]);
+
   if (loading) {
     return (
       <div className="center-loader">

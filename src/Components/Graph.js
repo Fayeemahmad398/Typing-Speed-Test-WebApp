@@ -8,6 +8,7 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
+
 import { Line } from "react-chartjs-2";
 import { UseThemes } from "../GlobalContextFolder/MyThemeContext";
 
@@ -23,26 +24,32 @@ ChartJS.register(
 
 const Graph = ({ graphData }) => {
   const { theme } = UseThemes();
+  // console.log(typeof graphData[0][0]);
   return (
     <>
       {graphData.length > 0 && (
         <Line
           className="line-component"
           data={{
-            labels: graphData.map((arr) => {
-              return arr[0];
-            }),
+            labels:
+              typeof graphData[0][0] === "string"
+                ? graphData.reverse().map((arr) => {
+                    return arr[0]; //date x-axes
+                  })
+                : graphData.map((arr) => {
+                    return arr[0];
+                  }),
             datasets: [
               {
                 data: graphData.map((arr) => {
-                  return arr[1];
+                  return arr[1]; //wpm
                 }),
-                label: `${
+                label:
                   typeof graphData[0][0] === "string"
                     ? "WPM vs Date"
-                    : "WPM vs Time(sec) -->"
-                }`,
+                    : "WPM vs Time(sec) -->", //
                 borderColor: `${theme.color}`,
+                color: `${theme.color}`,
               },
             ],
           }}
@@ -51,7 +58,7 @@ const Graph = ({ graphData }) => {
               x: {
                 ticks: {
                   font: {
-                    // size: ,
+                    size: 20,
                   },
                   color: `${theme.color}`,
                 },
@@ -63,7 +70,7 @@ const Graph = ({ graphData }) => {
                       : "Time(sec) >",
                   color: `${theme.color}`,
                   font: {
-                    // size: 17,
+                    size: 20,
                   },
                 },
                 grid: {
@@ -76,12 +83,12 @@ const Graph = ({ graphData }) => {
                   text: "WPM >",
                   color: `${theme.color}`,
                   font: {
-                    // size: 17,
+                    size: 20,
                   },
                 },
                 ticks: {
                   font: {
-                    // size: 17,
+                    size: 20,
                   },
                   color: `${theme.color}`,
                 },
@@ -90,8 +97,17 @@ const Graph = ({ graphData }) => {
                 },
               },
             },
-            // responsive: true,
-            // maintainAspectRatio: false,
+            responsive: true,
+            maintainAspectRatio: false,
+            animations: {
+              tension: {
+                duration: 1000,
+                easing: "linear",
+                from: 1,
+                to: 0,
+                loop: true,
+              },
+            },
           }}
         />
       )}

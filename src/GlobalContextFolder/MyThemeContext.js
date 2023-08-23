@@ -6,6 +6,7 @@ export const MyThemeContextProvider = ({ children }) => {
   //Wrapper Components having App as a child of it
   // Receiving JSX of app as children inside to  it
   // console.log(children);
+
   const defaultValue =
     JSON.parse(localStorage.getItem("theme")) || themeOptions[2].value;
 
@@ -21,6 +22,6 @@ export const MyThemeContextProvider = ({ children }) => {
   );
 };
 
-export const UseThemes = () => {
+export const UseThemes = function () {
   return useContext(MyThemeContext);
 };

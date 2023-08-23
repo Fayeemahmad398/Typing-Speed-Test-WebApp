@@ -5,7 +5,7 @@ import "firebase/compat/auth";
 import "firebase/compat/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyA3PuuPGaH7clT1RHJQRJ6zwIkcqqwyEog",
+  apiKey: process.env.REACT_APP_APIKEY,
   authDomain: "typing-speed-test-web.firebaseapp.com",
   projectId: "typing-speed-test-web",
   storageBucket: "typing-speed-test-web.appspot.com",
@@ -17,5 +17,6 @@ const firebaseConfig = {
 const firebaseApp = firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 const database = firebaseApp.firestore();
-console.log("connecting");
+console.log(auth)
+console.log("Connected Firebase");
 export { auth, database };

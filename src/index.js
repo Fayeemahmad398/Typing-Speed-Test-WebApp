@@ -9,7 +9,7 @@ ReactDOM.render(
   <MyThemeContextProvider>
     <MyContextProvider>
       <BrowserRouter>
-      <App />
+        <App />
       </BrowserRouter>
     </MyContextProvider>
   </MyThemeContextProvider>,

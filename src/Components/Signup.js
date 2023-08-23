@@ -22,6 +22,9 @@ const Signup = ({ HandleClose }) => {
         draggable: true,
         progress: undefined,
         theme: "dark",
+        style: {
+          color: "yellow",
+        },
       });
       return;
     }
@@ -102,6 +105,11 @@ const Signup = ({ HandleClose }) => {
             color: theme.color,
           },
         }}
+        inputProps={{
+          style: {
+            color: theme.color,
+          },
+        }}
       />
 
       <TextField
@@ -110,6 +118,11 @@ const Signup = ({ HandleClose }) => {
         variant="outlined"
         onChange={(event) => {
           setPassword(event.target.value);
+        }}
+        inputProps={{
+          style: {
+            color: theme.color,
+          },
         }}
         InputLabelProps={{
           style: {
@@ -125,6 +138,11 @@ const Signup = ({ HandleClose }) => {
           setcnfPassword(event.target.value);
         }}
         InputLabelProps={{
+          style: {
+            color: theme.color,
+          },
+        }}
+        inputProps={{
           style: {
             color: theme.color,
           },

@@ -3,10 +3,12 @@ import { createRef, useEffect, useMemo, useRef, useState } from "react";
 import UpperMenu from "./UpperMenu";
 import { useGlobalContext } from "../GlobalContextFolder/myContext";
 import Status from "./Status";
+
 const TypingBox = () => {
   const { testTime } = useGlobalContext();
 
   const [countDown, setCountDown] = useState(testTime);
+
   const [wordIndex, setWordIndex] = useState(0);
   const [charIndex, setCharIndex] = useState(0);
   const [intervalID, setIntervalID] = useState(null);
@@ -20,10 +22,20 @@ const TypingBox = () => {
   const [graphData, setGraphData] = useState([]);
 
   const inputRef = useRef(null);
+  console.log(inputRef);
 
   const [randomWordArr, setRandomWordArr] = useState(() => {
     return generate(60);
   });
+
+  const wordsSpanArraysRefs = useMemo(() => {
+    const arr = Array(randomWordArr.length).fill(0);
+    const newArr = arr.map(() => {
+      return createRef(null);
+    });
+    console.log(newArr);
+    return newArr;
+  }, [randomWordArr]);
 
   useEffect(() => {
     resetAll();
@@ -50,6 +62,7 @@ const TypingBox = () => {
     });
     setCountDown(testTime);
     setWordIndex(0);
+    setCorrectWords(0);
     setCharIndex(0);
     setTestStarted(false);
     setTestEnded(false);
@@ -69,6 +82,7 @@ const TypingBox = () => {
     setIntervalID(intervalId);
     function Timer() {
       setCountDown((previousValue) => {
+        
         setCorrectChars((correctChars) => {
           setGraphData((graphData) => {
             return [
@@ -93,15 +107,6 @@ const TypingBox = () => {
       });
     }
   };
-
-  const wordsSpanArraysRefs = useMemo(() => {
-    const arr = Array(randomWordArr.length).fill(0);
-    const newArr = arr.map(() => {
-      return createRef(null);
-    });
-
-    return newArr;
-  }, [randomWordArr]);
 
   useEffect(() => {
     inputRef.current.focus();
@@ -195,6 +200,7 @@ const TypingBox = () => {
     return Math.round(correctChars / 5 / (testTime / 60));
   }
   function calculateAccuracy() {
+    console.log(correctWords, wordIndex);
     return Math.round((correctWords / wordIndex) * 100);
   }
   function focustInputElement() {

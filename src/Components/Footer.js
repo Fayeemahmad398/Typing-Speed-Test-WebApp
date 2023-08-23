@@ -17,12 +17,12 @@ const Footer = () => {
     <div className="footer">
       <div className="Links">
         <div className="Github">
-          <NavLink to={"https://github.com//Fayeemahmad398"}>
+          <NavLink to={"https://github.com//Fayeemahmad398"} target="_blank">
             <GitHubIcon className="contact-icons" />
           </NavLink>
         </div>
         <div className="Linkedin">
-          <NavLink to={"https://www.linkedin.com/in/fayeem-ahmad398/"}>
+          <NavLink to={"https://www.linkedin.com/in/fayeem-ahmad398/"} target="_blank">
             <LinkedInIcon className="contact-icons" />
           </NavLink>
         </div>
@@ -31,7 +31,7 @@ const Footer = () => {
         <Select
           onChange={HandleChange}
           placeholder="Themes"
-          options={themeOptions}
+          options={themeOptions} //array of object with label and value(obj styling)
           menuPlacement="top"
           styles={{
             control: (baseStyle) => {

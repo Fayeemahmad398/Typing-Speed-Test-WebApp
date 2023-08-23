@@ -11,7 +11,7 @@ const Login = ({ HandleClose }) => {
 
   const handleLogin = () => {
     if (!email || !password) {
-      toast.warn(" 🦄 All fields are mandatory!", {
+      toast.warn(" All fields are mandatory!", {
         position: "top-right",
         autoClose: 4000,
         hideProgressBar: false,
@@ -30,7 +30,7 @@ const Login = ({ HandleClose }) => {
     auth
       .signInWithEmailAndPassword(email, password)
       .then((res) => {
-        toast.success("🦄 Successfully logged in!", {
+        toast.success("Successfully logged in!", {
           position: "top-right",
           autoClose: 4000,
           hideProgressBar: false,
@@ -69,7 +69,7 @@ const Login = ({ HandleClose }) => {
   };
   return (
     <Box
-    className="box-login"
+      className="box-login"
       p={3}
       style={{
         display: "flex",
@@ -90,6 +90,11 @@ const Login = ({ HandleClose }) => {
             color: theme.color,
           },
         }}
+        inputProps={{
+          style: {
+            color: theme.color,
+          },
+        }}
       />
 
       <TextField
@@ -104,12 +109,17 @@ const Login = ({ HandleClose }) => {
             color: theme.color,
           },
         }}
+        inputProps={{
+          style: {
+            color: theme.color,
+          },
+        }}
       />
 
       <Button
         variant="contained"
         size="large"
-        style={{ background: theme.color,color:theme.background }}
+        style={{ background: theme.color, color: theme.background }}
         onClick={handleLogin}
       >
         Login

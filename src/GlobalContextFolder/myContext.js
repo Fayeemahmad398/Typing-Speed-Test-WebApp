@@ -4,6 +4,7 @@ const myContext = createContext();
 
 export const MyContextProvider = ({ children }) => {
   const [testTime, setTestTime] = useState(15);
+
   const values = {
     testTime: testTime,
     setTestTime: setTestTime,
@@ -12,4 +13,6 @@ export const MyContextProvider = ({ children }) => {
   return <myContext.Provider value={values}>{children}</myContext.Provider>;
 };
 
-export const useGlobalContext = () => useContext(myContext);
+export const useGlobalContext = function () {
+  return useContext(myContext);
+};

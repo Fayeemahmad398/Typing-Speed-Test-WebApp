@@ -7,14 +7,17 @@ import { useState } from "react";
 import { UseThemes } from "../GlobalContextFolder/MyThemeContext";
 import { Box } from "@mui/system";
 import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+
 import firebaseAuthErrorMessages from "../Utils/errorMapping";
 import { auth } from "../firebaseConfig.js";
 import { toast } from "react-toastify";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router";
+
 const AccountCircle = () => {
   const [isOpen, setOpen] = useState(false);
+
   const [value, setvalue] = useState(0);
   const { theme } = UseThemes();
   const navigator = useNavigate();
@@ -39,7 +42,7 @@ const AccountCircle = () => {
     auth
       .signOut()
       .then((res) => {
-        toast.success("🦄 logged out successfully!", {
+        toast.success("logged out successfully!", {
           position: "top-right",
           autoClose: 4000,
           hideProgressBar: false,
@@ -54,7 +57,7 @@ const AccountCircle = () => {
         });
       })
       .catch((error) => {
-        toast.error("🦄 Not able to  Logged out !", {
+        toast.error(" Not able to  Logged out !", {
           position: "top-right",
           autoClose: 4000,
           hideProgressBar: false,
@@ -72,10 +75,10 @@ const AccountCircle = () => {
 
   const GoogleProvider = new GoogleAuthProvider();
 
-  const handleGoogleLogIn = async () => {
+  const handleGoogleLogIn = () => {
     signInWithPopup(auth, GoogleProvider)
       .then((res) => {
-        toast.success("🦄 Google logged in successfully!", {
+        toast.success("Google logged in successfully!", {
           position: "top-right",
           autoClose: 4000,
           hideProgressBar: false,
@@ -91,7 +94,8 @@ const AccountCircle = () => {
         HandleClose();
       })
       .catch((error) => {
-        console.log(error.message);
+        console.log(error.message.Firebase);
+
         toast.error(
           firebaseAuthErrorMessages[error.code] ||
             "Not able use google login service",
@@ -127,10 +131,17 @@ const AccountCircle = () => {
           alignItems: "center",
         }}
       >
-        <div style={{ width: "400px" }} className="signloginbox">
+        <div
+          style={{ width: "400px", borderRadius: "10px" }}
+          className="signloginbox"
+        >
           <AppBar
             position="static"
-            style={{ background: `${theme.background}` }}
+            style={{
+              background: `${theme.background}`,
+              borderTopLeftRadius: "10px",
+              borderTopRightRadius: "10px",
+            }}
           >
             <Tabs variant="fullWidth" value={value} onChange={handleChangeVal}>
               <Tab label="Signup" style={{ color: theme.color }}></Tab>
@@ -141,7 +152,7 @@ const AccountCircle = () => {
           {value == 0 && <Signup HandleClose={HandleClose} />}
           {value == 1 && <Login HandleClose={HandleClose} />}
 
-          <Box>
+          <Box p={3}>
             <span>OR</span>
             <GoogleButton
               style={{

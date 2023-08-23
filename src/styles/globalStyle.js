@@ -20,13 +20,13 @@ body{
     transition:1s all; 
 }
 .canvas {
-  border: 2px dotted blue;
+  // border: 2px dotted blue;
   display: flex;
   flex-direction:column;
   width:90vw;
   margin-left:auto;
   margin-right:auto;
-  gap:70px;
+  gap:17px;
 }
 // header is styled just below
 .Header{
@@ -39,20 +39,20 @@ body{
   align-items:center;
  
 }
- 
-
 .logo-typing{
   height:60px;
   width:60px;
 }
 .logo-typing img{
-    border:1px solid red;
+    border:3px dotted ${(props) => {
+      return props.theme.color;
+    }};
     width:100%;
     height:100%;
     border-radius:50%;
   }
 .logo{
-  border:1px solid yellow;
+  // border:1px solid yellow;
   width:fit-content;
   display:flex;
   align-items:center;
@@ -60,7 +60,7 @@ body{
   gap:10px;
 }
   .icon-logo{
-    border:1px solid yellow;
+    // border:1px solid yellow;
   }
   .acount-circle-icon{
     font-size:2rem;
@@ -72,22 +72,29 @@ body{
 
   
   .onediv{
-    border:2px solid red;
+    // border:2px solid red;
   }
   .outer-typing-box{
-    border:1px solid red;
+    // border:1px solid red;
   }
   // typing box is styled just below
   .upper-menu{
-    border:2px solid green;
+    // border:2px solid green;
     display:flex;
     justify-content:space-between;
     align-items:end;
     font-size:1.5rem;
     padding:10px;
     margin-top:30px;
+    position:relative;
     
   }
+  
+  .hurry{
+    color:red !important;
+  }
+
+
   .test-mode{
     width:70px;
     border-radius:3px;
@@ -103,7 +110,9 @@ body{
     cursor:pointer;
   }
   .counter{
-    border:2px solid red;
+    border:2px solid ${(props) => {
+      return props.theme.color;
+    }};
     padding:8px;
     border-radius:5px;
     background:${(props) => {
@@ -114,7 +123,7 @@ body{
     }}
   }
   .test-options{
-    border:1px solid red;
+    // border:1px solid red;
     display:flex;
     gap:20px;
     padding:8px;
@@ -127,24 +136,25 @@ body{
     }}
   }
   .type-box{
-    border:2px solid yellow;
+    // border:2px solid yellow;
     // height:280px;
     max-width:100%;
     overflow:hidden;
     margin-left:auto;
     margin-right:auto;
     margin-top:30px;
+    height:300px;
   }
   .words{
-    border:1px solid green;
     display:flex;
     flex-wrap:wrap;
   }
-
-.word{
+  
+  .word{
+  // border:1px solid green;
     font-size:1.6rem;
     margin-right:7px;
-    margin-bottom:5px;
+    margin-bottom:10px;
   }
 
 .input-box{
@@ -234,32 +244,55 @@ body{
   }
   .Incorrect{
     color:red;
+    animation:keepblink 2s linear infinite;
+  }
+  @keyframes keepblink{
+    0%{
+
+      color:red;
+    }
+    50%{
+      color:#000000;
+
+    }
+    100%{
+      color:red;
+
+    }
   }
  
 // Status box(current analysis graph and details) is  styled just below to it
 
   .status-box{
-    border:2px solid red;
+    border:1px solid ${(props) => {
+      return props.theme.color;
+    }};
     display:grid;
     grid-template-columns:1.5fr 2fr;
     width:100%;
     margin-top:20px;
+    border-radius:10px;
 
+  }
+  .graph-homepage{
+    width:100%!important;
+    margin:auto;
   }
   .line-component{
     width:100% !important;
   }
   .result{
-    border:1px solid green;
+    // border:1px solid green;
     font-size:2.2rem;
     display:flex;
     flex-direction:column;
     align-items:center;
     gap:15px;
+    margin-top:20px;
 
   }
   .graph{
-    border:2px  solid yellow;
+    // border:2px  solid yellow;
     width:100%;
     display:flex;
     flex-direction:row;
@@ -267,19 +300,26 @@ body{
   }
   .current-graph{
     width:9%;
-    border:1px solid blue;
+    // border:1px solid blue;
 
   }
   .signloginbox{
     text-align:center;
-    
+   background:${(props) => {
+     return props.theme.background;
+   }};
+  border-radius:10px;
+
+  }
+  .MuiTabs-root{
+    border-radius:10px!important;
   }
   .box-signup{
-    border:1px solid !important;
+    // border:1px solid !important;
     border-radius:5px;
   }
   .box-login{
-    border:1px solid !important;
+    // border:1px solid !important;
     border-radius:5px;
 
   }
@@ -295,7 +335,7 @@ body{
     justify-content:space-between;
     width:100%;
     // border:1px solid ;
-    margin-top:20px;
+    margin-top:10px;
   }
 
 .Links{
@@ -314,7 +354,7 @@ a{
 }
 
 .center-loader{
-  border:1px solid red;
+  // border:1px solid red;
   display:flex;
   width:100vw;
   justify-content:center;
@@ -356,9 +396,10 @@ border-right: 2px solid ${(props) => {
 }
 .total-tests{
   display:flex;
+  flex-direction:column;
   justify-content:center;
   align-items:center;
-  font-size:2.5rem;
+  font-size:2rem;
 
 }
 h1,h2{
@@ -370,8 +411,8 @@ h1,h2{
 max-height:600px!important;
 }
 .details-progress{
-  margin-top:20px;
-  border:2px solid red;
+  margin-top:70px;
+  // border:2px solid red;
 }
 
 .activeTest{
@@ -380,9 +421,41 @@ max-height:600px!important;
   }};
   color:${(props) => {
     return props.theme.color;
-  }}
+  }};
+  border-radius:5px;
+  animation:active 1.5s linear infinite;
 }
 
+@keyframes active{
+  0%{
+    background:${(props) => {
+      return props.theme.background;
+    }};
+    color:${(props) => {
+      return props.theme.color;
+    }};
+  } 
+
+  50%{
+    background:${(props) => {
+      return props.theme.color;
+    }};
+    color:${(props) => {
+      return props.theme.background;
+    }};
+    
+  } 
+    
+  100%{
+    background:${(props) => {
+      return props.theme.background;
+    }};
+    background:${(props) => {
+      return props.theme.color;
+    }};
+    
+  }
+  }
 
 
 
@@ -395,18 +468,7 @@ max-height:600px!important;
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-// Media Queries i  applied below than  it 
+// Media Queries applied below than  it 
 
 
 
@@ -415,6 +477,9 @@ max-height:600px!important;
     height:50px;
     width:50px;
 
+  }
+  .footer{
+    margin-top:20px;
   }
 .canvas{
   width:95vw;
@@ -450,6 +515,9 @@ max-height:600px!important;
   align-items:center;
   gap:30px;
 }
+
+
+
 .test-options{
   gap:5px;
   justify-content:center;
@@ -477,11 +545,10 @@ max-height:600px!important;
   width:100%!important;
 }
 .total-tests{
-  font-size:2rem;
+  font-size:1.5rem;
+
 }
-.line-component{
-  height:100px!important;
-}
+
 
 
  }

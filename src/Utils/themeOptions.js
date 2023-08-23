@@ -68,11 +68,11 @@ const theme13 = {
   color: "white",
   background: "black",
 };
-const theme14={
-  label:"Light",
-  color:"black",
-  background:"white"
-}
+const theme14 = {
+  label: "Light",
+  color: "black",
+  background: "white",
+};
 export const themeOptions = [
   {
     label: "Terminal",
@@ -127,7 +127,7 @@ export const themeOptions = [
     value: theme13,
   },
   {
-    label:"Light",
-   value:theme14
-  }
+    label: "Light",
+    value: theme14,
+  },
 ];
