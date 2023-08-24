@@ -14,22 +14,19 @@ const Status = ({
 }) => {
   const SaveDataToDB = () => {
     if (isNaN(accuracy)) {
-      toast.warn(
-        " invalid test,You should type atleast a word to see result!",
-        {
-          position: "top-right",
-          autoClose: 4000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "dark",
-          style: {
-            color: "yellow",
-          },
-        }
-      );
+      toast.warn("invalid test,Type atleast a word!", {
+        position: "top-right",
+        autoClose: 4000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        style: {
+          color: "yellow",
+        },
+      });
       return;
     }
 
