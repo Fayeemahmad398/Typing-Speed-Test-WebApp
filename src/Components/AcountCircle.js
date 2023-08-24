@@ -132,7 +132,12 @@ const AccountCircle = () => {
         }}
       >
         <div
-          style={{ width: "400px", borderRadius: "10px" }}
+          style={{
+            width: "400px",
+            borderRadius: "10px",
+            border: "1px solid",
+            outline: "none",
+          }}
           className="signloginbox"
         >
           <AppBar

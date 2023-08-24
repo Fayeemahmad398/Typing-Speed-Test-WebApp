@@ -32,7 +32,7 @@ const Graph = ({ graphData }) => {
           className="line-component"
           data={{
             labels:
-              typeof graphData[0][0] === "string"
+              typeof [0] === "string"
                 ? graphData.reverse().map((arr) => {
                     return arr[0]; //date x-axes
                   })
@@ -96,6 +96,8 @@ const Graph = ({ graphData }) => {
                   color: `${theme.color}`,
                 },
               },
+
+              
             },
             responsive: true,
             maintainAspectRatio: false,
