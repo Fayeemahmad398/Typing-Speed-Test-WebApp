@@ -116,7 +116,11 @@ const Status = ({
         </div>
 
         <div>
-          <span>Accuracy:</span> <strong>{accuracy}%</strong>
+          <span>Accuracy:</span>{" "}
+          <strong>
+            {accuracy}
+            {!isNaN(accuracy) ? "%" : ""}
+          </strong>
         </div>
         <div>
           <div>
