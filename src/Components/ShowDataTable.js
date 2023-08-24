@@ -21,7 +21,7 @@ const ShowDataTable = ({ data, graphData }) => {
   return (
     <div className="table">
       <h2 className="details-progress">Details of Progress</h2>
-      <TableContainer>
+      <TableContainer  className="table-container">
         <Table>
           <TableHead>
             <TableRow>

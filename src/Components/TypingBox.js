@@ -8,7 +8,6 @@ const TypingBox = () => {
   const { testTime } = useGlobalContext();
 
   const [countDown, setCountDown] = useState(testTime);
-
   const [wordIndex, setWordIndex] = useState(0);
   const [charIndex, setCharIndex] = useState(0);
   const [intervalID, setIntervalID] = useState(null);
@@ -20,12 +19,14 @@ const TypingBox = () => {
   const [extraChars, setExtraChars] = useState(0);
   const [correctWords, setCorrectWords] = useState(0);
   const [graphData, setGraphData] = useState([]);
+  const [TotalTimetaken, setTotalTimeTaken] = useState(1);
 
   const inputRef = useRef(null);
-  console.log(inputRef);
+  // console.log(inputRef);
 
   const [randomWordArr, setRandomWordArr] = useState(() => {
-    return generate(60);
+    return generate(70);
+    
   });
 
   const wordsSpanArraysRefs = useMemo(() => {
@@ -58,7 +59,7 @@ const TypingBox = () => {
 
   function resetAll() {
     setRandomWordArr(() => {
-      return generate(60);
+      return generate(70);
     });
     setCountDown(testTime);
     setWordIndex(0);
@@ -74,6 +75,7 @@ const TypingBox = () => {
     setMissedChars(0);
     setExtraChars(0);
     setGraphData([]);
+    setTotalTimeTaken(1);
   }
 
   const startTimer = () => {
@@ -95,7 +97,7 @@ const TypingBox = () => {
           });
           return correctChars;
         });
-
+        setTotalTimeTaken(testTime - previousValue);
         if (previousValue == 1) {
           setTestEnded(true);
           clearInterval(intervalId);
@@ -113,6 +115,7 @@ const TypingBox = () => {
   }, []);
 
   function handleUser(event) {
+    console.log(event.key);
     const word = wordsSpanArraysRefs[wordIndex].current.children;
 
     if (!testStarted) {
@@ -139,12 +142,15 @@ const TypingBox = () => {
         word[charIndex].classList.remove("blinkerChar");
         setMissedChars(missedChars + (word.length - charIndex));
       }
-
-      wordsSpanArraysRefs[wordIndex + 1].current.children[0].className =
-        "blinkerChar";
-      setWordIndex(wordIndex + 1);
-
-      setCharIndex(0);
+      if (wordsSpanArraysRefs[wordIndex + 1]) {
+        wordsSpanArraysRefs[wordIndex + 1].current.children[0].className =
+          "blinkerChar";
+        setWordIndex(wordIndex + 1);
+        setCharIndex(0);
+      } else {
+        setTestEnded(true);
+        clearInterval(intervalID);
+      }
       return;
     }
 
@@ -202,7 +208,7 @@ const TypingBox = () => {
   }
 
   function calculateWPM() {
-    return Math.round(correctChars / 5 / (testTime / 60));
+    return Math.round(correctChars / 5 / (TotalTimetaken / 60));
   }
   function calculateAccuracy() {
     console.log(correctWords, wordIndex);
