@@ -83,7 +83,7 @@ const Status = ({
     if (auth.currentUser) {
       SaveDataToDB();
     } else {
-      toast.warn("🦄 Please Loggin to save result", {
+      toast.warn("Please Loggin to save result", {
         position: "top-right",
         autoClose: 4000,
         hideProgressBar: false,

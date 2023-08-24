@@ -1,9 +1,3 @@
-const theme1 = {
-  label: "Terminal",
-  background: "#191a1b",
-  color: "#48494b;",
-  typeBoxText: "",
-};
 const theme2 = {
   label: "AfterDark",
   background: "#1b1d36",
@@ -74,10 +68,6 @@ const theme14 = {
   background: "white",
 };
 export const themeOptions = [
-  {
-    label: "Terminal",
-    value: theme1,
-  },
   {
     label: "AfterDark",
     value: theme2,

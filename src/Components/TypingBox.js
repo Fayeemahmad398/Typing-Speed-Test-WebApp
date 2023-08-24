@@ -78,8 +78,8 @@ const TypingBox = () => {
 
   const startTimer = () => {
     const intervalId = setInterval(Timer, 1000);
-
     setIntervalID(intervalId);
+
     function Timer() {
       setCountDown((previousValue) => {
         setCorrectChars((correctChars) => {
@@ -120,27 +120,30 @@ const TypingBox = () => {
       setTestStarted(true);
     }
 
+    //user clicking the space button
     if (event.keyCode === 32) {
+      // counting the correct words
       const wordTypedCorrectly = wordsSpanArraysRefs[
         wordIndex
       ].current.querySelectorAll(".correct");
+
       if (wordTypedCorrectly.length === word.length) {
         setCorrectWords(correctWords + 1);
       }
 
-      if (word.length <= charIndex) {
-        //logic for the space key
-        // clicked space key at last of word
+      //logic for the space key
+      if (charIndex >= word.length) {
+        // clicked space key at last char of word
         word[charIndex - 1].classList.remove("blinkerChar-right");
       } else {
-        // clicked space key between word
         word[charIndex].classList.remove("blinkerChar");
         setMissedChars(missedChars + (word.length - charIndex));
       }
+
       wordsSpanArraysRefs[wordIndex + 1].current.children[0].className =
         "blinkerChar";
-
       setWordIndex(wordIndex + 1);
+
       setCharIndex(0);
       return;
     }
@@ -178,6 +181,7 @@ const TypingBox = () => {
       return;
     }
 
+    // just declaring the correct or incorrect characters
     if (event.key === word[charIndex].innerText) {
       word[charIndex].className = "correct";
       setCorrectChars(correctChars + 1);
@@ -185,6 +189,8 @@ const TypingBox = () => {
       word[charIndex].className = "Incorrect";
       setIncorrectChars(IncorrectChars + 1);
     }
+
+    ///Applying the border here (seems working as a cursor )
 
     if (charIndex + 1 == word.length) {
       word[charIndex].className += ` blinkerChar-right`;

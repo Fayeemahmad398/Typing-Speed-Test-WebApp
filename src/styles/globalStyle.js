@@ -56,14 +56,14 @@ body{
   width:fit-content;
   display:flex;
   align-items:center;
-  font-size:1.7rem;
+  font-size:1.8rem;
   gap:10px;
 }
   .icon-logo{
     // border:1px solid yellow;
   }
   .acount-circle-icon{
-    font-size:2rem;
+    font-size:2.5rem;
     margin:0px 20px;
   }
   .acount-circle-icon:hover{
@@ -152,9 +152,9 @@ body{
   
   .word{
   // border:1px solid green;
-    font-size:1.6rem;
+    font-size:1.7rem;
     margin-right:7px;
-    margin-bottom:10px;
+    margin-bottom:13px;
   }
 
 .input-box{
@@ -246,10 +246,19 @@ body{
     color:red;
     animation:keepblink 2s linear infinite;
   }
+
+
+
+
+
+
+
+  
   @keyframes keepblink{
     0%{
 
       color:red;
+      
     }
     50%{
       color:#000000;
@@ -491,7 +500,7 @@ max-height:600px!important;
     gap:0px;
   }
   .acount-circle-icon{
-    font-size:1.1rem;
+    font-size:1.4rem;
     margin:0px 5px !important;
   }
   .logo-typing img {
@@ -547,6 +556,14 @@ max-height:600px!important;
 .total-tests{
   font-size:1.5rem;
 
+}
+.table-cell{
+  font-size:13px!important;
+  padding:0px!important;
+}
+.details-progress {
+
+  margin-top:100px;
 }
 
 

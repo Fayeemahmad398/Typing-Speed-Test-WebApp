@@ -25,22 +25,34 @@ const ShowDataTable = ({ data, graphData }) => {
         <Table>
           <TableHead>
             <TableRow>
-              <TableCell style={style}>WPM</TableCell>
-              <TableCell style={style}>Accuracy</TableCell>
-              <TableCell style={style}>Characters</TableCell>
-              <TableCell style={style}>Date</TableCell>
+              <TableCell style={style} className="table-cell">
+                WPM
+              </TableCell>
+              <TableCell style={style} className="table-cell">
+                Accuracy
+              </TableCell>
+              <TableCell style={style} className="table-cell">
+                Characters
+              </TableCell>
+              <TableCell style={style} className="table-cell">
+                Date
+              </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {data.map((obj) => {
               return (
                 <TableRow>
-                  <TableCell style={style}>{obj.WPM}</TableCell>
-                  <TableCell style={style}>{obj.accuracy}</TableCell>
-                  <TableCell style={style}>
+                  <TableCell style={style} className="table-cell">
+                    {obj.WPM}
+                  </TableCell>
+                  <TableCell style={style} className="table-cell">
+                    {obj.accuracy}
+                  </TableCell>
+                  <TableCell style={style} className="table-cell">
                     {obj.correctChars}/{obj.missedChars}/{obj.IncorrectChars}
                   </TableCell>
-                  <TableCell style={style}>
+                  <TableCell style={style} className="table-cell">
                     {obj.timeStamp.toDate().toLocaleDateString() + " : "}
                     {obj.timeStamp.toDate().toLocaleTimeString()}
                   </TableCell>
