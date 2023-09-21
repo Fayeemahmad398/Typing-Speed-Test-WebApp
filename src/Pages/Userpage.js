@@ -10,6 +10,7 @@ import UserInfo from "../Components/UserInfo";
 import { UseThemes } from "../GlobalContextFolder/MyThemeContext";
 import { toast } from "react-toastify";
 import firebaseAuthErrorMessages from "../Utils/errorMapping";
+import { collection, getDocs, orderBy, query, where } from "firebase/firestore";
 
 const Userpage = () => {
   const [data, setData] = useState([]);
@@ -24,12 +25,17 @@ const Userpage = () => {
 
     console.log(auth);
     const tempData = [];
-    const resultRef = database.collection("result");
-    console.log(resultRef, uid);
-    resultRef
-      .where("UserId", "==", uid)
-      .orderBy("timeStamp", "desc")
-      .get()
+    // const resultRef = database.collection("result");
+
+    // console.log(resultRef, uid);
+
+    const q = query(
+      collection(database, "result"),
+      where("UserId", "==", uid),
+      orderBy("timeStamp", "desc")
+    );
+
+    getDocs(q)
       .then((snapshot) => {
         snapshot.forEach((doc) => {
           tempData.push({ ...doc.data() });
@@ -38,7 +44,7 @@ const Userpage = () => {
             doc.data().WPM,
           ]);
         });
-
+        console.log(graphData1);
         setData(tempData);
         setGraphData(graphData1);
       })
@@ -46,7 +52,7 @@ const Userpage = () => {
         console.log(error);
         toast.error(
           firebaseAuthErrorMessages[error?.code] ||
-            "Your connection was interrupted",
+            "firestore limit exceed Or Your connection was interrupted",
           {
             position: "top-right",
             autoClose: 4000,
@@ -65,7 +71,6 @@ const Userpage = () => {
         );
       });
   };
-  console.log(graphData);
   useEffect(() => {
     if (!loading) {
       fetchData();
@@ -82,11 +87,7 @@ const Userpage = () => {
       </div>
     );
   }
-  console.log(data);
-  console.log(graphData);
   return (
-
-    
     <div className="canvas">
       <UserInfo data={data} />
       <div className="graph-width">

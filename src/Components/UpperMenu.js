@@ -4,8 +4,8 @@ import { useEffect, useState } from "react";
 const UpperMenu = (props) => {
   const { setTestTime } = useGlobalContext();
   const [isHurry, setHurry] = useState(false);
-  const [is15Clicked, setClicked15] = useState(true);
 
+  const [is15Clicked, setClicked15] = useState(true);
   const [is30Clicked, setClicked30] = useState(false);
   const [is60Clicked, setClicked60] = useState(false);
 

@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { database, auth } from "../firebaseConfig";
 import Graph from "./Graph";
 import { toast } from "react-toastify";
+import { addDoc, collection } from "firebase/firestore";
 
 const Status = ({
   WPM,
@@ -30,21 +31,21 @@ const Status = ({
       return;
     }
 
-    const resultRef = database.collection("result");
+    // const resultRef = database.collection("result");
     const { uid } = auth.currentUser;
 
-    resultRef
-      .add({
-        timeStamp: new Date(),
-        WPM: WPM,
-        accuracy: accuracy,
-        correctChars: correctChars,
-        missedChars: missedChars,
-        correctWords: correctWords,
-        IncorrectChars: IncorrectChars,
-        UserId: uid,
-      })
+    addDoc(collection(database, "result"), {
+      timeStamp: new Date(),
+      WPM: WPM,
+      accuracy: accuracy,
+      correctChars: correctChars,
+      missedChars: missedChars,
+      correctWords: correctWords,
+      IncorrectChars: IncorrectChars,
+      UserId: uid,
+    })
       .then((res) => {
+        console.log(res);
         toast.success("Successfully saved user Details!", {
           position: "top-right",
           autoClose: 4000,
@@ -60,19 +61,22 @@ const Status = ({
         });
       })
       .catch((error) => {
-        toast.error("Not able  to save user details !", {
-          position: "top-right",
-          autoClose: 4000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-          style: {
-            color: "red",
-          },
-        });
+        toast.error(
+          `Not able  to save user details error is : ${error.message}`,
+          {
+            position: "top-right",
+            autoClose: 4000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            style: {
+              color: "red",
+            },
+          }
+        );
       });
   };
 

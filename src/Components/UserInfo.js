@@ -4,11 +4,11 @@ import { auth } from "../firebaseConfig";
 
 const UserInfo = ({ data }) => {
   const [user] = useAuthState(auth);
+  // console.log(user);
 
   const data1 = data.sort((a, b) => {
     return b.WPM - a.WPM;
   });
-  let flag = true;
 
   return (
     <div className="user-info">

@@ -26,7 +26,6 @@ const TypingBox = () => {
 
   const [randomWordArr, setRandomWordArr] = useState(() => {
     return generate(70);
-    
   });
 
   const wordsSpanArraysRefs = useMemo(() => {
@@ -97,8 +96,10 @@ const TypingBox = () => {
           });
           return correctChars;
         });
-        setTotalTimeTaken(testTime - previousValue);
+        setTotalTimeTaken(testTime - previousValue); //tracking the time taken so far
+
         if (previousValue == 1) {
+          //test time ended
           setTestEnded(true);
           clearInterval(intervalId);
           return 0;
@@ -117,7 +118,7 @@ const TypingBox = () => {
   function handleUser(event) {
     console.log(event.key);
     const word = wordsSpanArraysRefs[wordIndex].current.children;
-
+    console.log(wordsSpanArraysRefs[wordIndex]);
     if (!testStarted) {
       startTimer();
       setTestStarted(true);
@@ -128,7 +129,7 @@ const TypingBox = () => {
       // counting the correct words
       const wordTypedCorrectly = wordsSpanArraysRefs[
         wordIndex
-      ].current.querySelectorAll(".correct");
+      ].current.querySelectorAll(".correct"); //correct typed chars
 
       if (wordTypedCorrectly.length === word.length) {
         setCorrectWords(correctWords + 1);
@@ -158,15 +159,16 @@ const TypingBox = () => {
       //Clicked on back space button
       if (word.length == charIndex) {
         if (word[charIndex - 1].className.includes("extra")) {
+          //handling extra characters typed
           word[charIndex - 1].remove();
           word[charIndex - 2].className += " blinkerChar-right";
         } else {
-          word[charIndex - 1].className = "blinkerChar";
+          word[charIndex - 1].className = "blinkerChar"; //over write the all classes
         }
         setCharIndex(charIndex - 1);
         return;
       }
-
+      //back space is clicked in middle of word
       word[charIndex].className = "";
       word[charIndex - 1].className = "blinkerChar";
       setCharIndex(charIndex - 1);
@@ -196,7 +198,7 @@ const TypingBox = () => {
       setIncorrectChars(IncorrectChars + 1);
     }
 
-    ///Applying the border here (seems working as a cursor )
+    //Applying the border here (seems working as a cursor)
 
     if (charIndex + 1 == word.length) {
       word[charIndex].className += ` blinkerChar-right`;
@@ -210,10 +212,12 @@ const TypingBox = () => {
   function calculateWPM() {
     return Math.round(correctChars / 5 / (TotalTimetaken / 60));
   }
+  
   function calculateAccuracy() {
     console.log(correctWords, wordIndex);
     return Math.round((correctWords / wordIndex) * 100);
   }
+
   function focustInputElement() {
     inputRef?.current?.focus();
   }
@@ -234,6 +238,7 @@ const TypingBox = () => {
               );
             })}
           </div>
+          
           <input
             type="text"
             ref={inputRef}

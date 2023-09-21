@@ -11,6 +11,7 @@ import Userpage from "./Pages/Userpage";
 const App = () => {
   const { theme } = UseThemes();
   return (
+    // Theme are used as a props inside the create global style function of styled components
     <ThemeProvider theme={theme}>
       <ToastContainer />
       <GlobalStyles />

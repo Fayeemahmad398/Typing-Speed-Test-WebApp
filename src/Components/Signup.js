@@ -4,6 +4,7 @@ import { UseThemes } from "../GlobalContextFolder/MyThemeContext";
 import { auth } from "../firebaseConfig";
 import { toast } from "react-toastify";
 import firebaseAuthErrorMessages from "../Utils/errorMapping";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 
 const Signup = ({ HandleClose }) => {
   const [email, setEmail] = useState("");
@@ -44,8 +45,7 @@ const Signup = ({ HandleClose }) => {
       });
       return;
     }
-    auth
-      .createUserWithEmailAndPassword(email, password)
+    createUserWithEmailAndPassword(auth, email, password)
       .then((res) => {
         toast.success("Acount Created successfully !", {
           position: "top-right",

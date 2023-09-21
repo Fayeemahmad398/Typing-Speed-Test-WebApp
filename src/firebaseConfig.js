@@ -1,8 +1,7 @@
 // Initialize Firebase
-
-import firebase from "firebase/compat/app";
-import "firebase/compat/auth";
-import "firebase/compat/firestore";
+import { initializeApp } from "firebase/app";
+import { getAuth } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_APIKEY,
@@ -14,9 +13,27 @@ const firebaseConfig = {
   measurementId: "G-KX6Y20M1KZ",
 };
 
-const firebaseApp = firebase.initializeApp(firebaseConfig);
-const auth = firebase.auth();
-const database = firebaseApp.firestore();
-console.log(auth)
 console.log("Connected Firebase");
+
+// updated way to connect firebase to your app
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const database = getFirestore(app);
 export { auth, database };
+
+
+
+
+// --------------------------------------Old version code of firebase
+// import firebase from "firebase/compat/app";
+// import "firebase/compat/auth";
+// import "firebase/compat/firestore";
+
+// one way to connect firebase to your app
+// const firebaseApp = firebase.initializeApp(firebaseConfig);
+
+// const auth = firebase.auth();
+// const database = firebaseApp.firestore();
+
+// console.log(auth);

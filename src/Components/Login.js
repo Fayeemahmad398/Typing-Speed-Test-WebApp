@@ -4,6 +4,7 @@ import { UseThemes } from "../GlobalContextFolder/MyThemeContext";
 import { auth } from "../firebaseConfig";
 import { toast } from "react-toastify";
 import firebaseAuthErrorMessages from "../Utils/errorMapping";
+import { signInWithEmailAndPassword } from "firebase/auth";
 const Login = ({ HandleClose }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -27,8 +28,7 @@ const Login = ({ HandleClose }) => {
 
       return;
     }
-    auth
-      .signInWithEmailAndPassword(email, password)
+    signInWithEmailAndPassword(auth, email, password)
       .then((res) => {
         toast.success("Successfully logged in!", {
           position: "top-right",

@@ -22,7 +22,10 @@ const Footer = () => {
           </NavLink>
         </div>
         <div className="Linkedin">
-          <NavLink to={"https://www.linkedin.com/in/fayeem-ahmad398/"} target="_blank">
+          <NavLink
+            to={"https://www.linkedin.com/in/fayeem-ahmad398/"}
+            target="_blank"
+          >
             <LinkedInIcon className="contact-icons" />
           </NavLink>
         </div>

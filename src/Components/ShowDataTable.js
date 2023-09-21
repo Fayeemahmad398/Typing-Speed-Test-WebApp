@@ -8,7 +8,7 @@ import {
 } from "@mui/material";
 import { UseThemes } from "../GlobalContextFolder/MyThemeContext";
 
-const ShowDataTable = ({ data, graphData }) => {
+const ShowDataTable = ({ data }) => {
   const { theme } = UseThemes();
   const style = {
     color: theme.color,
@@ -17,11 +17,11 @@ const ShowDataTable = ({ data, graphData }) => {
     border: `1px solid ${theme.color}`,
   };
 
-  console.log(data);
+  // console.log(data);
   return (
     <div className="table">
       <h2 className="details-progress">Details of Progress</h2>
-      <TableContainer  className="table-container">
+      <TableContainer className="table-container">
         <Table>
           <TableHead>
             <TableRow>
