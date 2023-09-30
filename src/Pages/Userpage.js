@@ -11,6 +11,7 @@ import { UseThemes } from "../GlobalContextFolder/MyThemeContext";
 import { toast } from "react-toastify";
 import firebaseAuthErrorMessages from "../Utils/errorMapping";
 import { collection, getDocs, orderBy, query, where } from "firebase/firestore";
+import Comparision from "../Components/Comparision";
 
 const Userpage = () => {
   const [data, setData] = useState([]);
@@ -23,11 +24,7 @@ const Userpage = () => {
   const fetchData = () => {
     const { uid } = auth.currentUser;
 
-    console.log(auth);
     const tempData = [];
-    // const resultRef = database.collection("result");
-
-    // console.log(resultRef, uid);
 
     const q = query(
       collection(database, "result"),
@@ -44,7 +41,6 @@ const Userpage = () => {
             doc.data().WPM,
           ]);
         });
-        console.log(graphData1);
         setData(tempData);
         setGraphData(graphData1);
       })
@@ -87,8 +83,10 @@ const Userpage = () => {
       </div>
     );
   }
+
   return (
     <div className="canvas">
+      <Comparision/>
       <UserInfo data={data} />
       <div className="graph-width">
         <h1>Typing Speed Analysis</h1>

@@ -1,14 +1,16 @@
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../firebaseConfig";
+import { useGlobalContext } from "../GlobalContextFolder/myContext";
 
 const UserInfo = ({ data }) => {
   const [user] = useAuthState(auth);
-  // console.log(user);
+  const myContextObj = useGlobalContext();
 
   const data1 = data.sort((a, b) => {
     return b.WPM - a.WPM;
   });
+  myContextObj.CurrentUserData = data1;
 
   return (
     <div className="user-info">
@@ -35,4 +37,5 @@ const UserInfo = ({ data }) => {
     </div>
   );
 };
+
 export default UserInfo;

@@ -73,10 +73,10 @@ const AccountCircle = () => {
       });
   };
 
-  const GoogleProvider = new GoogleAuthProvider();
+  const AuthGoogleProvider = new GoogleAuthProvider();
 
   const handleGoogleLogIn = () => {
-    signInWithPopup(auth, GoogleProvider)
+    signInWithPopup(auth, AuthGoogleProvider)
       .then((res) => {
         toast.success("Google logged in successfully!", {
           position: "top-right",

@@ -31,9 +31,9 @@ const Status = ({
       return;
     }
 
-    // const resultRef = database.collection("result");
-    const { uid } = auth.currentUser;
-
+    const user = auth.currentUser;
+    let uid = user.uid;
+    console.log(user);
     addDoc(collection(database, "result"), {
       timeStamp: new Date(),
       WPM: WPM,
@@ -43,9 +43,9 @@ const Status = ({
       correctWords: correctWords,
       IncorrectChars: IncorrectChars,
       UserId: uid,
+      Email: user.email,
     })
       .then((res) => {
-        console.log(res);
         toast.success("Successfully saved user Details!", {
           position: "top-right",
           autoClose: 4000,
@@ -104,7 +104,7 @@ const Status = ({
 
   const UpdatedGraphData = graphData.filter((arr) => {
     if (!newSet.has(arr[0])) {
-      newSet.add(arr);
+      newSet.add(arr[0]);
       return arr;
     }
   });

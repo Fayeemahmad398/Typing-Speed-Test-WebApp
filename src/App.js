@@ -7,9 +7,11 @@ import "react-toastify/dist/ReactToastify.css";
 import { Routes, Route } from "react-router";
 import Homepage from "./Pages/Homepage";
 import Userpage from "./Pages/Userpage";
+import ComparePage from "./Pages/ComparePage";
 
 const App = () => {
   const { theme } = UseThemes();
+
   return (
     // Theme are used as a props inside the create global style function of styled components
     <ThemeProvider theme={theme}>
@@ -18,6 +20,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="/userpage" element={<Userpage />} />
+        <Route path="/ComparePage" element={<ComparePage />} />
       </Routes>
     </ThemeProvider>
   );

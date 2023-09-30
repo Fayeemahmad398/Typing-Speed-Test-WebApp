@@ -22,9 +22,6 @@ const auth = getAuth(app);
 const database = getFirestore(app);
 export { auth, database };
 
-
-
-
 // --------------------------------------Old version code of firebase
 // import firebase from "firebase/compat/app";
 // import "firebase/compat/auth";

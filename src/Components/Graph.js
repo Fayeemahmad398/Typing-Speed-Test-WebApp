@@ -24,7 +24,6 @@ ChartJS.register(
 
 const Graph = ({ graphData }) => {
   const { theme } = UseThemes();
-  // console.log(typeof graphData[0][0]);
   return (
     <>
       {graphData.length > 0 && (
@@ -32,7 +31,7 @@ const Graph = ({ graphData }) => {
           className="line-component"
           data={{
             labels:
-              typeof [0] === "string"
+              typeof graphData[0][0] === "string"
                 ? graphData.reverse().map((arr) => {
                     return arr[0]; //date x-axes  [1,3,43,4,45]
                   })

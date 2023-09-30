@@ -5,6 +5,7 @@ import { auth } from "../firebaseConfig";
 import { toast } from "react-toastify";
 import firebaseAuthErrorMessages from "../Utils/errorMapping";
 import { signInWithEmailAndPassword } from "firebase/auth";
+
 const Login = ({ HandleClose }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
