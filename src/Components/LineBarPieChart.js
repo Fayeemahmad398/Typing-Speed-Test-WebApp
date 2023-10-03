@@ -218,15 +218,15 @@ function LineBarPieChart({ currentUserData, otherPersonData }) {
               },
               responsive: true,
               maintainAspectRatio: false,
-              //   animations: {
-              //     tension: {
-              //       duration: 1000,
-              //       easing: "linear",
-              //       from: 1,
-              //       to: 0,
-              //       loop: true,
-              //     },
-              //   },
+                animations: {
+                  tension: {
+                    duration: 1000,
+                    easing: "linear",
+                    from: 1,
+                    to: 0,
+                    loop: true,
+                  },
+                },
             }}
           />
         </div>
@@ -344,15 +344,15 @@ function LineBarPieChart({ currentUserData, otherPersonData }) {
               },
               responsive: true,
               maintainAspectRatio: false,
-              // animations: {
-              //   tension: {
-              //     duration: 1000,
-              //     easing: "linear",
-              //     from: 1,
-              //     to: 0,
-              //     loop: true,
-              //   },
-              // },
+              animations: {
+                tension: {
+                  duration: 1000,
+                  easing: "linear",
+                  from: 1,
+                  to: 0,
+                  loop: true,
+                },
+              },
             }}
           />
         </div>
