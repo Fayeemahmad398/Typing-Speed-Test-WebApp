@@ -28,8 +28,62 @@ const TypingBox = () => {
   // console.log(inputRef);
 
   const [randomWordArr, setRandomWordArr] = useState(() => {
-    return generate(70);
+    return generate(50);
   });
+  let charsForHardWords = [
+    "$",
+    "%",
+    "#",
+    ">",
+    "?",
+    "}",
+    "*",
+    "@",
+    "~",
+    ",",
+    "^",
+  ];
+
+  const GenerateEasyWords = () => {
+    setRandomWordArr(generate(50));
+  };
+
+  const GenerateMediumWords = () => {
+    setRandomWordArr(
+      generate({
+        exactly: 50,
+        minLength: 6,
+        formatter: (word) => {
+          return (
+            word[Math.floor(Math.random() * word.length)].toUpperCase() +
+            word.slice(0, 4) +
+            word[Math.floor(Math.random() * word.length)].toUpperCase()
+          );
+        },
+      })
+    );
+  };
+  const GenerateHardWords = () => {
+    setRandomWordArr(
+      generate({
+        minLength: 6,
+        exactly: 50,
+        formatter: (word) => {
+          return (
+            word.slice(0, 2) +
+            charsForHardWords[
+              Math.floor(Math.random() * charsForHardWords.length)
+            ] +
+            word.slice(3, 4) +
+            charsForHardWords[
+              Math.floor(Math.random() * charsForHardWords.length)
+            ] +
+            word.slice(5, 6)
+          );
+        },
+      })
+    );
+  };
 
   const wordsSpanArraysRefs = useMemo(() => {
     const arr = Array(randomWordArr.length).fill(0);
@@ -37,7 +91,6 @@ const TypingBox = () => {
       return createRef(null);
     });
 
-    console.log(newArr);
     return newArr;
   }, [randomWordArr]);
 
@@ -62,7 +115,7 @@ const TypingBox = () => {
 
   function resetAll() {
     setRandomWordArr(() => {
-      return generate(70);
+      return generate(50);
     });
     setCountDown(testTime);
     setWordIndex(0);
@@ -127,9 +180,12 @@ const TypingBox = () => {
       startTimer();
       setTestStarted(true);
     }
-
-    //user clicking the space button
+    console.log(event.key);
+    if (event.key == "Shift") {
+      return;
+    }
     if (event.keyCode === 32) {
+      //user clicking the space button
       // counting the correct words
       const wordTypedCorrectly = wordsSpanArraysRefs[
         wordIndex
@@ -233,7 +289,14 @@ const TypingBox = () => {
 
   return (
     <div className="outer-typing-box">
-      <UpperMenu countDown={countDown} resetAll={resetAll} />
+      <UpperMenu
+        countDown={countDown}
+        resetAll={resetAll}
+        GenerateEasyWords={GenerateEasyWords}
+        GenerateHardWords={GenerateHardWords}
+        GenerateMediumWords={GenerateMediumWords}
+        testEnd={testEnd}
+      />
       {!testEnd && randomWordArr.length > 0 ? (
         <div className="type-box" onClick={focustInputElement}>
           <div className="words">

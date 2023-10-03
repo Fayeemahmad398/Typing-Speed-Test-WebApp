@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { database } from "../firebaseConfig";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { CircularProgress } from "@mui/material";
 import { auth } from "../firebaseConfig";
@@ -7,74 +6,35 @@ import { useNavigate } from "react-router";
 import ShowDataTable from "../Components/ShowDataTable";
 import Graph from "../Components/Graph";
 import UserInfo from "../Components/UserInfo";
-import { UseThemes } from "../GlobalContextFolder/MyThemeContext";
-import { toast } from "react-toastify";
-import firebaseAuthErrorMessages from "../Utils/errorMapping";
-import { collection, getDocs, orderBy, query, where } from "firebase/firestore";
 import Comparision from "../Components/Comparision";
+import { useGlobalContext } from "../GlobalContextFolder/myContext";
+import Chart from "chart.js/auto";
 
 const Userpage = () => {
-  const [data, setData] = useState([]);
   const navigator = useNavigate();
   const [graphData, setGraphData] = useState([]);
   const [user, loading] = useAuthState(auth);
-  const { theme } = UseThemes();
+  const { currentUserData } = useGlobalContext();
 
-  let graphData1 = [];
   const fetchData = () => {
-    const { uid } = auth.currentUser;
+    console.log(user);
+    let data = [];
 
-    const tempData = [];
+    currentUserData.map((obj) => {
+      data.push([obj.timeStamp.toDate().toLocaleDateString(), obj.WPM]);
+    });
 
-    const q = query(
-      collection(database, "result"),
-      where("UserId", "==", uid),
-      orderBy("timeStamp", "desc")
-    );
-
-    getDocs(q)
-      .then((snapshot) => {
-        snapshot.forEach((doc) => {
-          tempData.push({ ...doc.data() });
-          graphData1.push([
-            doc.data().timeStamp.toDate().toLocaleDateString(),
-            doc.data().WPM,
-          ]);
-        });
-        setData(tempData);
-        setGraphData(graphData1);
-      })
-      .catch((error) => {
-        console.log(error);
-        toast.error(
-          firebaseAuthErrorMessages[error?.code] ||
-            "firestore limit exceed Or Your connection was interrupted",
-          {
-            position: "top-right",
-            autoClose: 4000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-            style: {
-              color: theme.background,
-              background: theme.color,
-              border: `5px solid ${theme.background}`,
-            },
-          }
-        );
-      });
+    setGraphData(data);
   };
+
   useEffect(() => {
-    if (!loading) {
-      fetchData();
-    }
-    if (!loading && !user) {
+    if (loading == false && !user) {
+      //avoiding elligle acess
       navigator("/");
+    } else {
+      if (user) fetchData();
     }
-  }, [loading]);
+  }, [user, currentUserData.length]);
 
   if (loading) {
     return (
@@ -85,16 +45,18 @@ const Userpage = () => {
   }
 
   return (
+    // currentUserData.length > 0 && (
     <div className="canvas">
-      <Comparision/>
-      <UserInfo data={data} />
+      <h1>Compare yourself but with learning mindset (Positively)</h1>
+      <Comparision />
+      <UserInfo data={currentUserData} />
       <div className="graph-width">
         <h1>Typing Speed Analysis</h1>
-        <h2>WPM vs Date</h2>
         <Graph graphData={graphData} />
       </div>
-      <ShowDataTable data={data} />
+      <ShowDataTable data={currentUserData} />
     </div>
+    // )
   );
 };
 export default Userpage;

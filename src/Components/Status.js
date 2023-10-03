@@ -1,8 +1,9 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { database, auth } from "../firebaseConfig";
 import Graph from "./Graph";
 import { toast } from "react-toastify";
 import { addDoc, collection } from "firebase/firestore";
+import { useGlobalContext } from "../GlobalContextFolder/myContext";
 
 const Status = ({
   WPM,
@@ -13,6 +14,8 @@ const Status = ({
   correctWords,
   graphData,
 }) => {
+  const { setTotalTests } = useGlobalContext();
+
   const SaveDataToDB = () => {
     if (isNaN(accuracy)) {
       toast.warn("invalid test,Type atleast a word!", {
@@ -58,6 +61,9 @@ const Status = ({
           style: {
             color: "green",
           },
+        });
+        setTotalTests((prev) => {
+          return prev + 1;
         });
       })
       .catch((error) => {

@@ -13,11 +13,10 @@ const firebaseConfig = {
   measurementId: "G-KX6Y20M1KZ",
 };
 
-console.log("Connected Firebase");
-
 // updated way to connect firebase to your app
 
 const app = initializeApp(firebaseConfig);
+console.log("Connected Firebase");
 const auth = getAuth(app);
 const database = getFirestore(app);
 export { auth, database };

@@ -1,5 +1,4 @@
 import { GlobalStyles } from "./styles/globalStyle";
-
 import { ThemeProvider } from "styled-components";
 import { UseThemes } from "./GlobalContextFolder/MyThemeContext";
 import { ToastContainer } from "react-toastify";
@@ -7,7 +6,8 @@ import "react-toastify/dist/ReactToastify.css";
 import { Routes, Route } from "react-router";
 import Homepage from "./Pages/Homepage";
 import Userpage from "./Pages/Userpage";
-import ComparePage from "./Pages/ComparePage";
+import TopperPage from "./Pages/TopperPage";
+import FriendCompare from "./Pages/FriendCompare";
 
 const App = () => {
   const { theme } = UseThemes();
@@ -20,7 +20,8 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="/userpage" element={<Userpage />} />
-        <Route path="/ComparePage" element={<ComparePage />} />
+        <Route path="/FriendComparePage" element={<FriendCompare />} />
+        <Route path="/topperpage" element={<TopperPage />} />
       </Routes>
     </ThemeProvider>
   );

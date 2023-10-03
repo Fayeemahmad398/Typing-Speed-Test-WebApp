@@ -17,7 +17,6 @@ import { useNavigate } from "react-router";
 
 const AccountCircle = () => {
   const [isOpen, setOpen] = useState(false);
-
   const [value, setvalue] = useState(0);
   const { theme } = UseThemes();
   const navigator = useNavigate();
@@ -94,7 +93,7 @@ const AccountCircle = () => {
         HandleClose();
       })
       .catch((error) => {
-        console.log(error.message.Firebase);
+        console.log(error.code);
 
         toast.error(
           firebaseAuthErrorMessages[error.code] ||

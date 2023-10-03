@@ -5,12 +5,11 @@ import { useGlobalContext } from "../GlobalContextFolder/myContext";
 
 const UserInfo = ({ data }) => {
   const [user] = useAuthState(auth);
-  const myContextObj = useGlobalContext();
 
-  const data1 = data.sort((a, b) => {
+  const data1 = [...data].sort((a, b) => {
     return b.WPM - a.WPM;
   });
-  myContextObj.CurrentUserData = data1;
+  // myContextObj.CurrentUserData = data1;
 
   return (
     <div className="user-info">

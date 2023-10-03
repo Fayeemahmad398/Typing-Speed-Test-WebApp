@@ -2,70 +2,81 @@ const theme2 = {
   label: "AfterDark",
   background: "#1b1d36",
   color: "#99d6ea",
-  typeBoxText: "",
+  shadowoColor: "#5d6299",
 };
 const theme3 = {
   label: "Cafe",
   background: "#ceb18d",
   color: "#d4d2d1",
-  typeBoxText: "",
+  shadowoColor: "#ebb777",
 };
 
 const theme4 = {
   label: "Copper",
   background: "#c25c42",
   color: "#7ebab5",
+  shadowoColor: "#e38e78",
 };
 
 const theme5 = {
   label: "Aether",
   background: "#cf6bdd",
   color: "#eedaea",
+  shadowoColor: "#e6b4ed",
 };
 const theme6 = {
   label: "Blue Dolphin",
   background: "#003950",
   color: "#00e4ff",
+  shadowoColor: "#419abd",
 };
 const theme7 = {
   label: "Botanical",
   background: "#7b9c98",
   color: "#eaf1f3",
+  shadowoColor: "#8cebe0",
 };
 const theme8 = {
   label: "CyberSpace",
   background: "black",
   color: "#9578d3",
+  shadowoColor: "#b8a9d9",
 };
 const theme9 = {
   label: "Fundamental",
   background: "#727474",
   color: "#cac4be",
+  shadowoColor: "#6e6b67",
 };
 const theme10 = {
   label: "fire",
   background: "#683434",
   color: "#b31313",
+  shadowoColor: "#c98888",
 };
 const theme11 = {
   label: "Terror Below",
   background: "#015c53",
   color: "#dceae5",
+  shadowoColor: "#63b5ad",
 };
 const theme12 = {
   label: "sweden",
   background: "#0058a3",
   color: "#57abdb",
+  shadowoColor: "#469de7",
 };
 const theme13 = {
   label: "Dark",
   color: "white",
   background: "black",
+  shadowoColor: "#4d4545",
 };
 const theme14 = {
   label: "Light",
   color: "black",
   background: "white",
+  shadowoColor: "#4d4545",
 };
 
 export const themeOptions = [

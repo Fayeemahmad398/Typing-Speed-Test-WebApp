@@ -45,6 +45,7 @@ const Signup = ({ HandleClose }) => {
       });
       return;
     }
+
     createUserWithEmailAndPassword(auth, email, password)
       .then((res) => {
         toast.success("Acount Created successfully !", {
@@ -62,6 +63,7 @@ const Signup = ({ HandleClose }) => {
         });
         HandleClose();
       })
+      
       .catch((error) => {
         toast.error(
           firebaseAuthErrorMessages[error.code] || "Some error occured",

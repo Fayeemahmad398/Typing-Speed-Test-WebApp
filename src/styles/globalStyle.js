@@ -157,7 +157,7 @@ body{
   .word{
   // border:1px solid green;
     font-size:1.7rem;
-    margin-right:7px;
+    margin-right:18px;
     margin-bottom:13px;
   }
 
@@ -428,6 +428,49 @@ max-height:600px!important;
   margin-top:70px;
   // border:2px solid red;
 }
+.repeatTyping{
+  cursor:pointer;
+  background:${(props) => {
+    return props.theme.background;
+  }};
+  color:${(props) => {
+    return props.theme.color;
+  }};
+  border-radius:5px;
+  animation:repeat 1.5s linear infinite;
+}
+@keyframes repeat{
+  0%{
+    background:${(props) => {
+      return props.theme.background;
+    }};
+    color:${(props) => {
+      return props.theme.color;
+    }};
+  } 
+
+  50%{
+    background:${(props) => {
+      return props.theme.color;
+    }};
+    color:${(props) => {
+      return props.theme.background;
+    }};
+    
+  } 
+    
+  100%{
+    background:${(props) => {
+      return props.theme.background;
+    }};
+    background:${(props) => {
+      return props.theme.color;
+    }};
+    
+   }
+
+  }
+
 
 .activeTest{
   background:${(props) => {
@@ -481,8 +524,64 @@ max-height:600px!important;
   border-radius:10px;
 }
 
+.box-compare{
+    display: flex;
+    flex-direction:column;
+    width: 250px;
+    height: fit-content;
+    align-items:center;
+    border: 2px solid ${(props) => {
+      return props.theme.background;
+    }};
+    background: ${(props) => {
+      return props.theme.color;
+    }};
+    color: ${(props) => {
+      return props.theme.background;
+    }};
+    border-radius: 10px;
+    cursor: pointer;
+    animation:movesUpDown 2s linear infinite
+  
+}
 
 
+@keyframes movesUpDown{
+  0%{
+   transform:translateY(0px)
+  } 
+  25%{
+    transform:translateY(5px)
+  } 
+  50%{
+    transform:translateY(0px)
+   
+  } 
+  75%{
+    transform:translateY(-5px)
+   } 
+  100%{
+    transform:translateY(0px)
+
+    
+   }
+
+  }
+
+
+
+
+.box-compare:hover{
+  border: 2px solid ${(props) => {
+    return props.theme.color;
+  }};
+  background: ${(props) => {
+    return props.theme.background;
+  }};
+  color: ${(props) => {
+    return props.theme.color;
+  }};
+}
 
 
 

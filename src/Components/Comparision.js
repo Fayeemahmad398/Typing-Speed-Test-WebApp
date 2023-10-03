@@ -1,21 +1,22 @@
-import { Balance, Leaderboard } from "@mui/icons-material";
+import { Balance } from "@mui/icons-material";
 import { Modal, Box, Button, TextField } from "@mui/material";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import { UseThemes } from "../GlobalContextFolder/MyThemeContext";
 import { collection, getDocs, orderBy, query, where } from "firebase/firestore";
-import { auth, database } from "../firebaseConfig";
-import { useGlobalContext } from "../GlobalContextFolder/myContext";
+import { database } from "../firebaseConfig";
+import EmojiEventsIcon from "@mui/icons-material/EmojiEvents";
 
 import { useNavigate } from "react-router";
+import { useGlobalContext } from "../GlobalContextFolder/myContext";
 
 function Comparision() {
   const [open, setOpen] = useState(false);
   const [Email, setEmail] = useState("");
+
   const obj = UseThemes();
+  const { currentUserData } = useGlobalContext();
   const navigate = useNavigate();
-  const myGlobalContext = useGlobalContext();
-  console.log(myGlobalContext);
 
   function handleOpen() {
     setOpen(true);
@@ -25,82 +26,81 @@ function Comparision() {
     setOpen(false);
   }
 
-  async function HandleSubmit() {
-    console.log(Email);
+  function handleTopper() {
+    if (currentUserData.length < 2) {
+      toast.warn("You need to give atleast two tests to compare with Topper", {
+        style: {
+          background: "black",
+          color: "yellow",
+        },
+      });
+      return;
+    } else {
+      navigate("/topperpage");
+      return;
+    }
+  }
+
+  function HandleSubmitForFriend() {
     if (!Email.includes("@") || !Email.includes(".com")) {
-      toast.warning("Please,Enter proper email(includes like @,.com )", {
+      toast.warning("Please Enter proper email like (@,.com)", {
         style: {
           background: "black",
           color: "yellow",
         },
       });
     } else if (Email.length < 6) {
-      toast.warning("Email should be atleast 6 characters", {
+      toast.warning("Email should atleast of 6 length !", {
         style: {
           background: "black",
           color: "yellow",
         },
       });
     } else {
-      try {
-        const q = query(
-          collection(database, "result"),
-          where("Email", "==", Email),
-          orderBy("WPM", "desc")
+      if (currentUserData.length < 2) {
+        toast.warn(
+          "You need to give atleast two tests to compare with friend",
+          {
+            style: {
+              background: "black",
+              color: "yellow",
+            },
+          }
         );
-
-        const AllDocs = await getDocs(q);
-        console.log(AllDocs);
-        let top5ScoresOfFriend = [];
-
-        AllDocs.docs.map((doc, index) => {
-          if (index <= 4) {
-            top5ScoresOfFriend.push(doc.data());
-          }
-        });
-
-        if (top5ScoresOfFriend.length == 5) {
-          if (myGlobalContext.CurrentUserData.length < 5) {
-            toast.warning(
-              "You need to give Atleast 5 tests to compare with friend !",
-              {
-                style: {
-                  background: "black",
-                  color: "yellow",
-                },
-              }
-            );
-          } else {
-            console.log("saving both data");
-
-            myGlobalContext.dataForCompare = [
-              myGlobalContext.CurrentUserData.slice(0,5),
-              top5ScoresOfFriend,
-            ];
-            navigate("/ComparePage");
-          }
-        } else {
-          toast.warning(
-            "Your friend needs to give Atleast 5 tests to compare in healthy competition !",
-            {
-              style: {
-                background: "black",
-                color: "yellow",
-              },
-            }
-          );
-        }
-      } catch (e) {
-        console.log(e);
+        return;
       }
+
+      localStorage.setItem("Email", JSON.stringify(Email));
+      navigate("/FriendComparePage");
     }
   }
 
   return (
-    <div>
-      <div>
-        <Balance onClick={handleOpen} />
-        <Leaderboard />
+    <div
+      style={{
+        border: "2px solid yellow",
+        display: "flex",
+        justifyContent: "center",
+        marginTop: "20px",
+        gap: "30px",
+        flexFlow: "row wrap",
+      }}
+    >
+      <div className="box-compare" onClick={handleOpen}>
+        <abbr title="Compare with your friends">
+          <Balance
+            style={{ fontSize: "65px", marginRight: "30px", cursor: "pointer" }}
+          />
+        </abbr>
+        <h2>Compare your Typing speed and accuracy with your friends</h2>
+      </div>
+      <div className="box-compare" onClick={handleTopper}>
+        <abbr title="Cm your abilities with your friends">
+          <EmojiEventsIcon
+            style={{ fontSize: "65px", marginRight: "30px", cursor: "pointer" }}
+          />
+        </abbr>
+        <h2>Check Where you are and Topper</h2>
       </div>
       <div>
         <Modal
@@ -114,16 +114,16 @@ function Comparision() {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            border: "10px dotted red",
+            border: "2px dotted red",
           }}
         >
           <Box
             sx={{
               color: obj.theme.color,
               width: "400px",
-
               display: "flex",
               flexDirection: "column",
+              borderRadius: "5px",
               gap: "30px",
               p: 5,
               background: `${obj.theme.background}`,
@@ -131,7 +131,7 @@ function Comparision() {
           >
             <TextField
               value={Email}
-              label="Outlined"
+              label="Friend's Email"
               variant="outlined"
               placeholder="Enter Your friend's Email "
               onChange={(e) => {
@@ -152,7 +152,7 @@ function Comparision() {
               }}
             />
             <Button
-              onClick={HandleSubmit}
+              onClick={HandleSubmitForFriend}
               style={{
                 background: `${obj.theme.color}`,
                 color: `${obj.theme.background}`,
