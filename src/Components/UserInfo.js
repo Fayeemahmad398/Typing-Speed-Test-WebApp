@@ -26,7 +26,6 @@ const UserInfo = ({ data }) => {
         <p>
           <span>Total Tests:</span> <strong>{data.length}</strong>
         </p>
-
         {data1.length > 0 && (
           <p>
             <span>Best Score:</span> <strong>{data1[0].WPM}-WPM</strong>

@@ -58,6 +58,7 @@ function TopperPage() {
       orderBy("WPM", "desc"),
       limit(1)
     );
+
     const alldocs = await getDocs(q);
     getTopperData(alldocs.docs[0].data().UserId);
   }

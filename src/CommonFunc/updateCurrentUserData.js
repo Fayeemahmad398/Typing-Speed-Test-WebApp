@@ -13,6 +13,7 @@ export function updateCurrentUserData(setCurrentUserData, setTotalTests) {
   );
 
   const tempData = [];
+
   getDocs(q)
     .then((snapshot) => {
       snapshot.forEach((doc) => {
@@ -30,7 +31,7 @@ export function updateCurrentUserData(setCurrentUserData, setTotalTests) {
       console.log(error);
       toast.error(
         firebaseAuthErrorMessages[error?.code] ||
-          "Your connection was interrupted",
+        "Your connection was interrupted",
         {
           position: "top-right",
           autoClose: 4000,

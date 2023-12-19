@@ -72,11 +72,11 @@ const TypingBox = () => {
           return (
             word.slice(0, 2) +
             charsForHardWords[
-              Math.floor(Math.random() * charsForHardWords.length)
+            Math.floor(Math.random() * charsForHardWords.length)
             ] +
             word.slice(3, 4) +
             charsForHardWords[
-              Math.floor(Math.random() * charsForHardWords.length)
+            Math.floor(Math.random() * charsForHardWords.length)
             ] +
             word.slice(5, 6)
           );
@@ -147,7 +147,7 @@ const TypingBox = () => {
               [
                 testTime - previousValue + 1,
 
-                correctChars / 5 / ((testTime - previousValue + 1) / 60),
+                (correctChars / 5) / ((testTime - previousValue + 1) / 60),
               ],
             ];
           });
@@ -288,6 +288,7 @@ const TypingBox = () => {
   }
 
   return (
+
     <div className="outer-typing-box">
       <UpperMenu
         countDown={countDown}
@@ -297,6 +298,7 @@ const TypingBox = () => {
         GenerateMediumWords={GenerateMediumWords}
         testEnd={testEnd}
       />
+
       {!testEnd && randomWordArr.length > 0 ? (
         <div className="type-box" onClick={focustInputElement}>
           <div className="words">

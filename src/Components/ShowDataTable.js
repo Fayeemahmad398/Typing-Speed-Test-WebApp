@@ -111,6 +111,7 @@ const ShowDataTable = ({ data }) => {
         onPageChange={handleChangePage}
         onRowsPerPageChange={handleChangeRowsPerPage}
         style={{ background: theme.color }}
+
       />
     </Paper>
   );

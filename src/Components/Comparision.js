@@ -78,7 +78,6 @@ function Comparision() {
   return (
     <div
       style={{
-        border: "2px solid yellow",
         display: "flex",
         justifyContent: "center",
         marginTop: "20px",

@@ -34,15 +34,15 @@ const Graph = ({ graphData }) => {
             labels:
               typeof graphData[0][0] === "string"
                 ? [...graphData].reverse().map((arr) => {
-                    return arr[0]; //date x-axes  [1,3,43,4,45]
-                  })
+                  return arr[0]; //date x-axes  [1,3,43,4,45]
+                })
                 : graphData.map((arr) => {
-                    return arr[0]; //secs time
-                  }),
+                  return arr[0]; //secs time
+                }),
             datasets: [
               //putting the sets of data array on y axis
               {
-                data: [...graphData].reverse().map((arr) => {
+                data: [...graphData].map((arr) => {
                   return arr[1]; //wpm
                 }),
                 label:
@@ -144,7 +144,7 @@ const Graph = ({ graphData }) => {
             },
             responsive: true,
 
-            
+
             maintainAspectRatio: false,
             animations: {
               tension: {

@@ -7,11 +7,13 @@ const myContext = createContext();
 
 export const MyContextProvider = ({ children }) => {
   const [testTime, setTestTime] = useState(15);
+
   const [totalTest, setTotalTests] = useState(0);
   const [currentUserData, setCurrentUserData] = useState([]);
   const [user, loading] = useAuthState(auth);
 
   useEffect(() => {
+
     if (user) {
       updateCurrentUserData(setCurrentUserData, setTotalTests);
       console.log(values, "context");
@@ -29,6 +31,7 @@ export const MyContextProvider = ({ children }) => {
   console.log(values, "context");
 
   return <myContext.Provider value={values}>{children}</myContext.Provider>;
+
 };
 
 export const useGlobalContext = function () {

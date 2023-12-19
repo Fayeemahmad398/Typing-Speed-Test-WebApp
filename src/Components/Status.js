@@ -35,8 +35,10 @@ const Status = ({
     }
 
     const user = auth.currentUser;
+
     let uid = user.uid;
     console.log(user);
+
     addDoc(collection(database, "result"), {
       timeStamp: new Date(),
       WPM: WPM,

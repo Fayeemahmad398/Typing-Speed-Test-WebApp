@@ -22,6 +22,7 @@ function FriendCompare() {
       where("Email", "==", Email),
       orderBy("timeStamp", "desc")
     );
+
     let temp = [];
 
     console.log(q);
@@ -40,6 +41,7 @@ function FriendCompare() {
               color: "yellow",
             },
           });
+
           setTimeout(() => {
             navigate("/");
           }, 1500);
